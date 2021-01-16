@@ -1,0 +1,131 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "smart-farm": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        },
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "./src/sass/"
+          ]
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/smart-farm",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/assets/vendor/metismenu/dist/metisMenu.css",
+              "src/assets/vendor/switchery-npm/index.css",
+              "src/assets/css/icons/line-awesome.min.css",
+              "src/assets/css/icons/simple-line-icons.css",
+              "src/assets/css/icons/dripicons.min.css",
+              "src/assets/css/icons/material-design-iconic-font.min.css",
+              "src/styles.sass"
+            ],
+            "scripts": [
+              "src/assets/vendor/modernizr/modernizr.custom.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/vendor/js-storage/js.storage.js",
+              "src/assets/vendor/metismenu/dist/metisMenu.js",
+              "src/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js",
+              "src/assets/js/global/app.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "xlsx"
+            ]
+
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "smart-farm:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "smart-farm:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "smart-farm:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+
+      }
+    }
+  },
+  "defaultProject": "smart-farm",
+  "cli": {
+    "analytics": false
+  }
+
+}

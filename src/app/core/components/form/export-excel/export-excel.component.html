@@ -1,0 +1,58 @@
+<section class="page-content">
+  <div class="card-deck">
+    <div class="card">
+      <h5 class="card-header">Export Excel</h5>
+      <div class="card-body">
+        <form class="picker-form" [formGroup]="formGroup">
+          <div class="form-group row">
+            <label class="col-form-label offset-lg-1 col-lg-5 col-sm-12" for="input-start-date">Start Date</label>
+            <div class="offset-lg-1 col-lg-10 col-md-9 col-sm-11">
+              <div class="input-group date dp-years">
+                <input formControlName="startDate"
+                  type="text" class="form-control" placeholder="Start Date" id="input-start-date"
+                       (click)="startDate.toggle()" ngbDatepicker placement="bottom" #startDate="ngbDatepicker"
+                       [minDate]="firstDate" [maxDate]="maxDate"
+                       (dateSelect)="onDateSelect($event)"
+                       readonly>
+                <span class="input-group-addon action"
+                      (click)="startDate.toggle()">
+									 <i class="icon dripicons-calendar" ></i>
+								</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-form-label offset-lg-1 col-lg-5 col-sm-12 " for="input-end-date">End Date</label>
+            <div class="offset-lg-1 col-lg-10 col-md-9 col-sm-12">
+              <div class="input-group date dp-years">
+                <input formControlName="endDate"
+                      type="text" class="form-control" placeholder="End Date" id="input-end-date" placement="bottom"
+                       (click)="endDate.toggle()"
+                       [minDate]="minDate" [maxDate]="maxDate"
+                       ngbDatepicker #endDate="ngbDatepicker" readonly>
+                <span class="input-group-addon action"
+                      (click)="endDate.toggle()">
+                      <i class="icon dripicons-calendar" ></i>
+								</span>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="card-footer">
+        <div class="form-actions">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="offset-lg-0 col-lg-12 offset-sm-3 col-md-5" id="actions-wrap">
+                  <button class="btn-sm btn btn-secondary clear-form btn-rounded btn-outline" (click)="onCancel()">Cancel</button>
+                  <button class="btn-sm btn btn-primary btn-rounded" (click)="onExport()">Export</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

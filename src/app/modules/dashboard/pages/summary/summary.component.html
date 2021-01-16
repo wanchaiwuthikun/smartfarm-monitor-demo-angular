@@ -1,0 +1,101 @@
+<div class="content container-fluid">
+  <header class="page-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h1>Dashboard</h1>
+      </div>
+      <ul class="actions top-right">
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="btn btn-fab" data-toggle="dropdown" aria-expanded="false">
+            <i class="la la-ellipsis-h"></i>
+          </a>
+          <div class="dropdown-menu dropdown-icon-menu dropdown-menu-right">
+            <div class="dropdown-header">
+              Quick Actions
+            </div>
+            <a href="javascript:void(0)" class="dropdown-item" (click)="onRefresh()">
+              <i class="icon dripicons-clockwise"></i> Refresh
+            </a>
+            <a href="javascript:void(0)" class="dropdown-item" (click)="onExportExcel()">
+              <i class="icon dripicons-cloud-download"></i> Export Excel
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!--END PAGE HEADER -->
+  <!--START PAGE CONTENT -->
+  <section class="page-content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="row m-0 col-border-xl">
+            <div class="col-md-12 col-lg-6 col-xl-3">
+              <div class="card-body">
+                <div class="icon-rounded icon-rounded-primary float-left m-r-20"
+                     [class.icon-rounded-primary]="wifiStatus?.status === 'CONNECTED'"
+                     [class.icon-rounded-accent]="wifiStatus?.status !== 'CONNECTED'"
+                >
+                  <i class="icon dripicons-wifi"></i>
+                </div>
+                <h5 class="card-title m-b-5 text-primary"
+                    [class.text-primary]="wifiStatus?.status === 'CONNECTED'"
+                    [class.text-accent]="wifiStatus?.status !== 'CONNECTED'"
+                > {{ wifiStatus?.status }} </h5>
+                <h6 class="text-muted m-t-10">
+                  Wifi sensors
+                </h6>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-3">
+              <div class="card-body">
+                <div class="icon-rounded float-left m-r-20"
+                     [class.icon-rounded-primary]="humidityStatus?.status === 'CONNECTED'"
+                     [class.icon-rounded-accent]="humidityStatus?.status !== 'CONNECTED'"
+                >
+                  <i class="icon dripicons-feed"></i>
+                </div>
+                <h5 class="card-title m-b-5"
+                    [class.text-primary]="humidityStatus?.status === 'CONNECTED'"
+                    [class.text-accent]="humidityStatus?.status !== 'CONNECTED'"
+                > {{ humidityStatus?.status }} </h5>
+                <h6 class="text-muted m-t-10">
+                  Humidity sensors
+                </h6>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-3">
+              <div class="card-body">
+                <div class="icon-rounded icon-rounded-info float-left m-r-20">
+                  <i class="icon dripicons-graph-line"></i>
+                </div>
+                <h5 class="card-title m-b-5 counter" >
+                  {{ humidityData?.temperature }} &#x2103;
+                </h5>
+                <h6 class="text-muted m-t-10">
+                  Temperature
+                </h6>
+
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-3">
+              <div class="card-body">
+                <div class="icon-rounded icon-rounded-info float-left m-r-20">
+                  <i class="icon dripicons-pulse "></i>
+                </div>
+                <h5 class="card-title m-b-5" title="{{ humidityData?.date | dateTime : humidityData?.time }}">
+                  {{ humidityData?.humidity }} &#x00025;
+                </h5>
+                <h6 class="text-muted m-t-10">
+                  Relative humidity
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--END PAGE CONTENT -->
+</div>
